@@ -9,6 +9,11 @@ import java.util.ArrayList;
 
 @Service
 public class VideogameService {
+    private final ArrayList<Videogame> VIDEOGAMES_ARR = convertVideogames();
+
+    public VideogameService() throws IOException {
+    }
+
 
     public ArrayList<Videogame> convertVideogames() throws IOException {
         ArrayList<Videogame> videogames = new ArrayList<>();
@@ -21,10 +26,23 @@ public class VideogameService {
      return videogames;
     }
 
+    public ArrayList<Videogame> getVideogamesByGenre(String genre_name){
+        ArrayList<Videogame> videogames = new ArrayList<>();
+
+        for (Videogame videogame : VIDEOGAMES_ARR){
+            for (int i = 0; i < videogame.getGenres().length; i++){
+                if (videogame.getGenres()[i] == genre_name){
+                    videogames.add(videogame);
+                }
+            }
+        }
+        return videogames;
+    }
+
+    }
 
 
 
 
 
 
-}

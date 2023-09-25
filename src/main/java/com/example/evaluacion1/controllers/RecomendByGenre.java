@@ -17,7 +17,6 @@ public class RecomendByGenre {
     public RecomendByGenre(VideogameService videogameService) throws IOException {
         this.videogameService = videogameService;
     }
-    private final ArrayList<Videogame> VIDEOGAMES_ARR = videogameService.convertVideogames();
 
     @GetMapping("")
     public ResponseEntity<ArrayList<Videogame>> getRecomendByGenre() throws IOException {
@@ -32,11 +31,7 @@ public class RecomendByGenre {
     public ResponseEntity<ArrayList<String>> recomend3GamesByGenre(@PathVariable String genre_name){
         ArrayList<String> randomGames = new ArrayList<>();
 
-        for (Videogame videogame : VIDEOGAMES_ARR){
-//            if (videogame.getGenres()[i] = genre_name){
-//
-//            }
-//        }
+
 
         return ResponseEntity.ok(randomGames);
 
