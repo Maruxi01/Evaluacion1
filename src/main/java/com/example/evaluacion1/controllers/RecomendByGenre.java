@@ -1,7 +1,7 @@
 package com.example.evaluacion1.controllers;
 
 import com.example.evaluacion1.models.Videogame;
-import com.example.evaluacion1.service.VideogameService;
+import com.example.evaluacion1.services.VideogameService;
 import com.example.evaluacion1.utils.JSON_Handler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

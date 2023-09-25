@@ -1,4 +1,4 @@
-package com.example.evaluacion1.service;
+package com.example.evaluacion1.services;
 
 import com.example.evaluacion1.models.Videogame;
 import com.example.evaluacion1.utils.JSON_Handler;
