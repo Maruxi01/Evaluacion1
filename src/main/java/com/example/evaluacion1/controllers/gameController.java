@@ -15,6 +15,11 @@ public class gameController {
         this.videogameService = videogameService;
     }
 
+    /**
+     * This method returns a videogame by name
+     * @param name The name of the videogame
+     * @return A videogame
+     * **/
     @GetMapping
     public String getGame(@RequestParam String name
     ) throws IOException {

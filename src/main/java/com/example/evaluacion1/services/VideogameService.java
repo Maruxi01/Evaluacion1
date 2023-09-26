@@ -114,7 +114,7 @@ public class VideogameService {
                 return "Juego no encontrado en nuestra base de datos";
             }
 
-            return videogame.get().toString2();
+            return videogame.get().toStringWithoutName();
         }
 
     }

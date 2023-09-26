@@ -14,6 +14,12 @@ public class GetRandomVideogame {
     static Random random = new Random();
 
 
+    /**
+     * This method returns a list of random videogames
+     * @param videogames The list of videogames
+     * @param amountRandom The amount of random videogames
+     * @return A list of random videogames
+     * **/
     public List<Videogame> getRandomVideogame(List<Videogame> videogames, int amountRandom){
         ArrayList<Videogame> randomVideogames = new ArrayList<>();
 

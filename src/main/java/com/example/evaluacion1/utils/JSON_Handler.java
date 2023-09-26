@@ -35,6 +35,11 @@ public class JSON_Handler {
         return videogames;
     }
 
+    /**
+     * This method convert all the videogames from the json files into a single list
+     * @param consoleAbreviation The abbreviation of the console
+     * @return A list of videogames objects
+     * **/
     public List<Videogame> converGamesByConsole(String consoleAbreviation) throws IOException {
         return getAllVideogames("data/"+consoleAbreviation+".json");
     }

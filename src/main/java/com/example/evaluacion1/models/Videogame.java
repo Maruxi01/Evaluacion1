@@ -10,15 +10,24 @@ public class Videogame {
     private String video_console;
     private String[] genres;
 
+
+    /**
+     * This method returns a string with the information of the videogames
+     *
+     * @return A string with the information of the videogames
+     */
     @Override
     public String toString() {
         return name + " - " +
                   video_console + " - " +
                  Arrays.toString(genres) ;
     }
-
-
-    public String toString2() {
+    /**
+     * This method returns a string with the information of the videogames without the name
+     *
+     * @return A string with the information of the videogames
+     */
+    public String toStringWithoutName() {
         return video_console + " - " +
                 Arrays.toString(genres);
     }
