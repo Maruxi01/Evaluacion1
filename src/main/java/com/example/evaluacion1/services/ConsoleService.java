@@ -1,41 +1,44 @@
 package com.example.evaluacion1.services;
 
 import com.example.evaluacion1.models.Videogame;
+import com.example.evaluacion1.utils.GetRandomVideogame;
 import com.example.evaluacion1.utils.JSON_Handler;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ConsoleService {
 
-public List<Videogame> getRecomendByConsole(String console_abreviation) throws IOException {
-    ArrayList<Videogame> allVideogames;
+    private final JSON_Handler jsonHandler = new JSON_Handler();
+    private final GetRandomVideogame getRandomVideogame = new GetRandomVideogame();
 
-    JSON_Handler json_handler = new JSON_Handler();
-    return json_handler.getAllVideogames("data/"+console_abreviation+".json");
+
+    /**
+     * This method returns a list of strings with the information of the videogames
+     * @param consoleAbreviation The abbreviation of the console
+     * @return A list of strings with the information of the videogames
+     * @throws IOException If the file is not found
+     */
+    public List<String> formatVideogamesToString(String consoleAbreviation) throws IOException {
+        int numberOfGames = 2;
+        List<Videogame> videogames = jsonHandler.converGamesByConsole(consoleAbreviation);
+        videogames = getRandomVideogame.getRandomVideogame(videogames, numberOfGames);
+        return formatToString(videogames);
     }
 
-    public List<String> formatVideogamesToString(String console_abreviation) throws IOException {
-    List<Videogame> videogames=  getRecomendByConsole(console_abreviation);
-    List<String> videogamesString = new ArrayList<>();
-    for(Videogame videogame: videogames){
-        videogamesString.add( videogame.getName() +" - "+ videogame.getVideo_console() +" - "+ Arrays.toString(videogame.getGenres()));
+    /**
+     * This method returns a list of strings with the information of the videogames
+     * @param videogames The list of videogames
+     * @return A list of strings with the information of the videogames
+     */
+    public List<String> formatToString(List<Videogame> videogames){
+        return videogames.stream().
+                map(Videogame::toString)
+                .collect(Collectors.toList());
     }
 
-    return selectRandomGames(videogamesString);
-    }
-
-    public List<String> selectRandomGames(List<String> videogames){
-        List<String> randomGames = new ArrayList<>();
-        for(int i=0; i<2; i++){
-            int randomIndex = (int) (Math.random() * videogames.size());
-            randomGames.add(videogames.get(randomIndex));
-        }
-        return randomGames;
-    }
 
 }

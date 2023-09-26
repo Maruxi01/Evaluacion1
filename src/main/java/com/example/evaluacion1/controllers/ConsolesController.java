@@ -17,10 +17,10 @@ public class ConsolesController {
         this.consoleService = consoleService;
     }
 
-    @GetMapping("/{console_abreviation}/random_games")
-    public ResponseEntity<List<String>> getRecomendByConsole(@PathVariable String console_abreviation
+    @GetMapping("/{consoleAbreviation}/randomGames")
+    public ResponseEntity<List<String>> getRecomendByConsole(@PathVariable String consoleAbreviation
     ) throws IOException {
-       List<String> videogamesFormated = consoleService.formatVideogamesToString(console_abreviation);
+       List<String> videogamesFormated = consoleService.formatVideogamesToString(consoleAbreviation);
 
         return ResponseEntity.ok(videogamesFormated);
     }

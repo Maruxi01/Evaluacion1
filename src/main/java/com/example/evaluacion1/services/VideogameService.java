@@ -11,20 +11,8 @@ import java.util.ArrayList;
 public class VideogameService {
     private final ArrayList<Videogame> VIDEOGAMES_ARR = convertVideogames();
 
-    public VideogameService() throws IOException {
-    }
 
 
-    public ArrayList<Videogame> convertVideogames() throws IOException {
-        ArrayList<Videogame> videogames;
-
-        JSON_Handler json_handler = new JSON_Handler();
-        videogames = json_handler.getAllVideogames("data/GBA.json");
-        videogames.retainAll(json_handler.getAllVideogames("data/PS2.json"));
-        videogames.retainAll(json_handler.getAllVideogames("data/N64.json"));
-
-     return videogames;
-    }
 
     public ArrayList<Videogame> getVideogamesByGenre(String genre_name){
         ArrayList<Videogame> videogames = new ArrayList<>();

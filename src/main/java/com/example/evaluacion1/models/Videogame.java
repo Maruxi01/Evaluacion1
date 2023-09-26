@@ -16,4 +16,5 @@ public class Videogame {
                   video_console + '-' +
                  Arrays.toString(genres) ;
     }
+
 }
