@@ -1,6 +1,6 @@
 package com.example.evaluacion1.controllers;
 
-import com.example.evaluacion1.services.ConsoleService;
+import com.example.evaluacion1.services.VideogameService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,16 +11,16 @@ import java.util.List;
 @RequestMapping("/consoles")
 public class ConsolesController {
 
-    private final ConsoleService consoleService;
+    private final VideogameService videogameService;
 
-    public ConsolesController(ConsoleService consoleService) {
-        this.consoleService = consoleService;
+    public ConsolesController(VideogameService videogameService) {
+        this.videogameService = videogameService;
     }
 
     @GetMapping("/{consoleAbreviation}/randomGames")
     public ResponseEntity<List<String>> getRecomendByConsole(@PathVariable String consoleAbreviation
     ) throws IOException {
-       List<String> videogamesFormated = consoleService.formatVideogamesToString(consoleAbreviation);
+       List<String> videogamesFormated = videogameService.converGamesByConsole(consoleAbreviation);
 
         return ResponseEntity.ok(videogamesFormated);
     }
