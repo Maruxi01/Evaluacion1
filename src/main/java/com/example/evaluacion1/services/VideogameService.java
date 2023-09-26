@@ -16,7 +16,7 @@ public class VideogameService {
 
 
     public ArrayList<Videogame> convertVideogames() throws IOException {
-        ArrayList<Videogame> videogames = new ArrayList<>();
+        ArrayList<Videogame> videogames;
 
         JSON_Handler json_handler = new JSON_Handler();
         videogames = json_handler.getAllVideogames("data/GBA.json");

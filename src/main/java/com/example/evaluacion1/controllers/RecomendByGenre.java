@@ -2,6 +2,7 @@ package com.example.evaluacion1.controllers;
 
 import com.example.evaluacion1.models.Videogame;
 import com.example.evaluacion1.services.VideogameService;
+import com.example.evaluacion1.utils.GetRandomVideogame;
 import com.example.evaluacion1.utils.JSON_Handler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +28,16 @@ public class RecomendByGenre {
 
         return ResponseEntity.ok(allVideogames);
     }
-    @PostMapping("/random_games/{genre_name}")
-    public ResponseEntity<ArrayList<String>> recomend3GamesByGenre(@PathVariable String genre_name){
+    @PostMapping("/random_games/{genreName}")
+    public ResponseEntity<ArrayList<String>> recomend3GamesByGenre(@PathVariable String genreName){
+
+        GetRandomVideogame getRandomVideogame = new GetRandomVideogame();
+
         ArrayList<String> randomGames = new ArrayList<>();
 
+        ArrayList<Videogame> videogamesByGenre =  videogameService.getVideogamesByGenre(genreName);
+
+//        randomGames = ;
 
 
         return ResponseEntity.ok(randomGames);
