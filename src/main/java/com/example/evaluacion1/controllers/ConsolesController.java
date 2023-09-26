@@ -24,4 +24,11 @@ public class ConsolesController {
 
         return ResponseEntity.ok(videogamesFormated);
     }
+
+    @PostMapping("/{consoleAbreviation}/genre/random_game")
+    public ResponseEntity <List<String>> getRecomendedVideogame(@RequestBody String genreName, @PathVariable String consoleAbreviation)
+            throws Exception {
+        List<String> videogameFormated = videogameService.getRecomendedVideogame(genreName, consoleAbreviation);
+        return ResponseEntity.ok(videogameFormated);
+    }
 }

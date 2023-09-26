@@ -17,4 +17,10 @@ public class Videogame {
                  Arrays.toString(genres) ;
     }
 
+
+    public String toString2() {
+        return video_console + " - " +
+                Arrays.toString(genres);
+    }
+
 }
