@@ -48,9 +48,9 @@ http://localhost:8080/genres/random_games
 
 ### Recommend 1 random game for a specific console and genre: 
 HTTP Method: POST <br>
-Route: `/consoles/{consoleAbreviation}/genre/random_game"`
+Route: `/consoles/{consoleAbreviation}/genre/random_game`
 ````shell
-http://localhost:8080/consoles/{consoleAbreviation}/genre/random_game"
+http://localhost:8080/consoles/{consoleAbreviation}/genre/random_game
 ````
 ### Search for a game by name:
 HTTP Method: GET <br>
