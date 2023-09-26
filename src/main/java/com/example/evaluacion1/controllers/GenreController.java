@@ -1,12 +1,10 @@
 package com.example.evaluacion1.controllers;
 
-import com.example.evaluacion1.models.Videogame;
 import com.example.evaluacion1.services.VideogameService;
-import com.example.evaluacion1.utils.GetRandomVideogame;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,30 +15,17 @@ public class GenreController {
     public GenreController(VideogameService videogameService)  {
         this.videogameService = videogameService;
     }
-
-    @GetMapping("/{genreName}")
-    public ResponseEntity<List<Videogame>> getVideoGamesByGenre(@PathVariable String genreName) {
-
-        List<Videogame> videogamesByGenre =  videogameService.getVideogamesByGenre(genreName);
-        return ResponseEntity.ok(videogamesByGenre);
-    }
-    @PostMapping("/random_games/{genreName}")
-    public ResponseEntity<List<String>> recomend3GamesByGenre(@PathVariable String genreName){
-
-        GetRandomVideogame getRandomVideogame = new GetRandomVideogame();
-
-        List<String> finalGames = new ArrayList<>();
-
-        List<Videogame> videogamesByGenre =  videogameService.getVideogamesByGenre(genreName);
-
-        List<Videogame> randomVideogames = getRandomVideogame.getRandomVideogame(videogamesByGenre, 3);
-
-        for(Videogame video: randomVideogames){
-            finalGames.add(video.toString());
-        }
+    /**
+     * This method returns a recommendation list of 3 videogames by genre
+     * @param genreName The name of the genre
+     * @return A recommendation list of 3 videogames
+     * **/
+    @PostMapping("/random_games")
+    public ResponseEntity<List<String>> recommend3GamesByGenre(@RequestBody String genreName) throws IOException {
+        List<String> finalGames;
+        finalGames = videogameService.convertGamesByGenre(genreName, 3);
 
         return ResponseEntity.ok(finalGames);
-
 
     }
 }
