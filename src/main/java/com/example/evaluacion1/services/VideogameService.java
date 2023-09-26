@@ -48,7 +48,7 @@ public class VideogameService {
     public List<String> formatToString(List<Videogame> videogames) {
         return videogames.stream().
                 map(Videogame::toString)
-                .toList();
+                .collect(Collectors.toList());
     }
 
 
@@ -65,6 +65,7 @@ public class VideogameService {
         videogames = getRandomVideogame.getRandomVideogame(videogames, numberOfGames);
         return formatToString(videogames);
     }
+
     /**
      * This method returns a recomendation list of numGames games by genre
      * @param genreName The name of the genre
@@ -75,26 +76,30 @@ public class VideogameService {
         //Este array viene vacio
         List<Videogame> videogamesByGenre = getVideogamesByGenre(genreName);
 
-/
+        //Aqui da problemas pq el arr viene vacio
+        List<Videogame> randomVideogames = getRandomVideogame.getRandomVideogame(videogamesByGenre, numGames);
 
-        This method returns a list of strings with the information of the videogames
-        @param genreName The name of the genre
-        @param consoleAbbreviation The abbreviation of the console
-@return A list of strings with the information of the videogames
-@throws Exception If the file is not found*/
-        public List<String> getRecomendedVideogame(String genreName, String consoleAbbreviation) throws Exception {
-            List<Videogame> games = jsonHandler.converAlltVideogames();
+        return formatToString(randomVideogames);
+    }
 
-            List<Videogame> timmi = games.stream()
-                    .filter(videogame -> Arrays.asList(videogame.getGenres()).contains(genreName))
-                    .filter(videogame -> videogame.getVideo_console().equalsIgnoreCase(consoleAbbreviation))
-                    .collect(Collectors.toCollection(ArrayList::new));
-
-            return  formatToString(getRandomVideogame.getRandomVideogame(timmi, 1));
-        }
 
     /**
+     * This method returns a recommendation list of 3 videogames by genre
+     * @param genreName The name of the genre
+     * @return A recommendation list of 3 videogames
+     * **/
+    public List<String> getRecomendedVideogame(String genreName, String consoleAbbreviation) throws Exception {
+        List<Videogame> videogames = jsonHandler.convertAllVideogames();
 
+        videogames = videogames.stream()
+                .filter(videogame -> Arrays.asList(videogame.getGenres()).contains(genreName))
+                .filter(videogame -> videogame.getVideo_console().equalsIgnoreCase(consoleAbbreviation))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        return  formatToString(getRandomVideogame.getRandomVideogame(videogames, 1));
+    }
+
+        /**
         This method returns a videogame by its name
         @param name The name of the videogame
         @return A String with the information of the videogame formated
@@ -112,15 +117,9 @@ public class VideogameService {
             return videogame.get().toString2();
         }
 
-
-        //Aqui da problemas pq el arr viene vacio
-        List<Videogame> randomVideogames = getRandomVideogame.getRandomVideogame(videogamesByGenre, numGames);
-
-        return formatToString(randomVideogames);
-
     }
 
-}
+
 
 
 
