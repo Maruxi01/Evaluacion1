@@ -20,8 +20,8 @@ public class VideogameService {
 
         JSON_Handler json_handler = new JSON_Handler();
         videogames = json_handler.getAllVideogames("data/GBA.json");
-        videogames.retainAll(json_handler.getAllVideogames("data/PS2.json"));
-        videogames.retainAll(json_handler.getAllVideogames("data/N64.json"));
+        videogames.addAll(json_handler.getAllVideogames("data/PS2.json"));
+        videogames.addAll(json_handler.getAllVideogames("data/N64.json"));
 
      return videogames;
     }
@@ -31,7 +31,7 @@ public class VideogameService {
 
         for (Videogame videogame : VIDEOGAMES_ARR){
             for (int i = 0; i < videogame.getGenres().length; i++){
-                if (videogame.getGenres()[i] == genre_name){
+                if (videogame.getGenres()[i].equals(genre_name)){
                     videogames.add(videogame);
                 }
             }

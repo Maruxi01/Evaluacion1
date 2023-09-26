@@ -19,28 +19,28 @@ public class RecomendByGenre {
         this.videogameService = videogameService;
     }
 
-    @GetMapping("")
-    public ResponseEntity<ArrayList<Videogame>> getRecomendByGenre() throws IOException {
-        ArrayList<Videogame> allVideogames;
+    @GetMapping("/{genreName}")
+    public ResponseEntity<ArrayList<Videogame>> getVideoGamesByGenre(@PathVariable String genreName) {
 
-        JSON_Handler json_handler = new JSON_Handler();
-        allVideogames= json_handler.getAllVideogames("data/GBA.json");
-
-        return ResponseEntity.ok(allVideogames);
+        ArrayList<Videogame> videogamesByGenre =  videogameService.getVideogamesByGenre(genreName);
+        return ResponseEntity.ok(videogamesByGenre);
     }
     @PostMapping("/random_games/{genreName}")
     public ResponseEntity<ArrayList<String>> recomend3GamesByGenre(@PathVariable String genreName){
 
         GetRandomVideogame getRandomVideogame = new GetRandomVideogame();
 
-        ArrayList<String> randomGames = new ArrayList<>();
+        ArrayList<String> finalGames = new ArrayList<>();
 
         ArrayList<Videogame> videogamesByGenre =  videogameService.getVideogamesByGenre(genreName);
 
-//        randomGames = ;
+        ArrayList<Videogame> randomVideogames = getRandomVideogame.getRandomVideogame(videogamesByGenre, 3);
 
+        for(Videogame video: randomVideogames){
+            finalGames.add(video.toString());
+        }
 
-        return ResponseEntity.ok(randomGames);
+        return ResponseEntity.ok(finalGames);
 
 
     }

@@ -12,8 +12,8 @@ public class Videogame {
 
     @Override
     public String toString() {
-        return name + '-' +
-                  video_console + '-' +
+        return name + " - " +
+                  video_console + " - " +
                  Arrays.toString(genres) ;
     }
 }
